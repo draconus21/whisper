@@ -5,18 +5,29 @@
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	"image": "mcr.microsoft.com/devcontainers/base:jammy",
 	"features": {
+		"ghcr.io/devcontainers/features/python:1": {
+			"installTools": false,
+			"enableShared": true,
+			"version": "os-provided"
+		},
 		"ghcr.io/devcontainers/features/git-lfs:1": {
 			"autoPull": true,
 			"version": "latest"
 		},
+		"ghcr.io/devcontainers-contrib/features/zsh-plugins:0": {
+			"plugins": "git docker colored-man-pages zsh-autosuggestions zsh-syntax-highlighting",
+			"omzPlugins": "https://github.com/zsh-users/zsh-autosuggestions https://github.com/zsh-users/zsh-syntax-highlighting"
+		},
 		"ghcr.io/nils-geistmann/devcontainers-features/zsh:0": {
 			"setLocale": true,
 			"theme": "agnoster",
-			"plugins": "git docker",
 			"desiredLocale": "en_US.UTF-8 UTF-8"
-		}
+		},
+		"ghcr.io/iterative/features/nvtop:1": {},
+		"ghcr.io/guiyomh/features/vim": {}
 	},
 	"postStartCommand": "nvidia-smi",
+	"postCreateCommand": "python3 -m venv ${containerEnv:VENV}",
 	"hostRequirements": {
 		// Note: Setting gpu property's value to true will work with GPU machine types, but fail with CPUs.
 		// Hence, setting it to optional works in both cases.
@@ -33,6 +44,7 @@
 		"--shm-size=64g"
 	],
 	"containerEnv": {
+		"VENV": "/home/vscode/.venv",
 		// for X11 forwarding
 		"DISPLAY": "${localEnv:DISPLAY}",
 		"XAUTHORITY": "/tmp/.Xauthority",
@@ -56,8 +68,9 @@
 			],
 			"settings": {
 				"editor.formatOnSave": true,
+				"python.terminal.activateEnvironment": true,
 				"python.analysis.autoFormatStrings": true,
-				"python.defaultInterpreterPath": "${containerWorkspaceFolder}/.venv/bin/python",
+				"python.defaultInterpreterPath": "${containerEnv:VENV}/bin/python",
 				"black-formatter.showNotifications": "onError",
 				"black-formatter.interpreter": [
 					"/usr/bin/python3"
