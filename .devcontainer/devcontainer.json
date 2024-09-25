@@ -1,0 +1,99 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/ubuntu
+{
+	"name": "whisper",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/base:jammy",
+	"features": {
+		"ghcr.io/devcontainers/features/git-lfs:1": {
+			"autoPull": true,
+			"version": "latest"
+		},
+		"ghcr.io/nils-geistmann/devcontainers-features/zsh:0": {
+			"setLocale": true,
+			"theme": "agnoster",
+			"plugins": "git docker",
+			"desiredLocale": "en_US.UTF-8 UTF-8"
+		}
+	},
+	"postStartCommand": "nvidia-smi",
+	"hostRequirements": {
+		// Note: Setting gpu property's value to true will work with GPU machine types, but fail with CPUs.
+		// Hence, setting it to optional works in both cases.
+		// See https://github.com/devcontainers/features/tree/main/src/nvidia-cuda#enable-gpu-passthrough
+		"gpu": "optional"
+	},
+	"runArgs": [
+		// for X11 forwarding
+		"--net",
+		"host",
+		"-v",
+		"${localEnv:HOME}${localEnv:USERPROFILE}/.Xauthority:/tmp/.Xauthority",
+		// for gpu
+		"--shm-size=64g"
+	],
+	"containerEnv": {
+		// for X11 forwarding
+		"DISPLAY": "${localEnv:DISPLAY}",
+		"XAUTHORITY": "/tmp/.Xauthority",
+		// for proper timezone
+		"TZ": "${localEnv:TZ:America/Toronto}"
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-python.python",
+				"ms-python.black-formatter",
+				"ms-python.isort",
+				"ms-python.vscode-pylance",
+				"ms-python.debugpy",
+				"tamasfe.even-better-toml",
+				"timonwong.shellcheck",
+				"eamodio.gitlens",
+				"monokai.theme-monokai-pro-vscode",
+				"lextudio.restructuredtext",
+				"redhat.vscode-xml"
+			],
+			"settings": {
+				"editor.formatOnSave": true,
+				"python.analysis.autoFormatStrings": true,
+				"python.defaultInterpreterPath": "${containerWorkspaceFolder}/.venv/bin/python",
+				"black-formatter.showNotifications": "onError",
+				"black-formatter.interpreter": [
+					"/usr/bin/python3"
+				],
+				"black-formatter.args": [
+					"--config",
+					"${containerWorkspaceFolder}/pyproject.toml"
+				],
+				"terminal.integrated.tabStopWidth": 2,
+				"editor.renderWhitespace": "trailing",
+				"files.trimTrailingWhitespace": true,
+				"terminal.integrated.defaultProfile.windows": "Git Bash",
+				"terminal.integrated.defaultProfile.linux": "zsh",
+				"terminal.integrated.defaultProfile.osx": "zsh",
+				"[python]": {
+					"editor.defaultFormatter": "ms-python.black-formatter",
+					"editor.formatOnSave": true
+				},
+				"[tomld]": {
+					"editor.formatOnSave": true
+				},
+				"evenBetterToml.formatter.alignComments": true,
+				"evenBetterToml.formatter.alignEntries": true,
+				"evenBetterToml.formatter.compactEntries": true,
+				"evenBetterToml.formatter.compactInlineTables": false,
+				"evenBetterToml.formatter.indentEntries": true,
+				"evenBetterToml.formatter.columnWidth": 120,
+				"evenBetterToml.formatter.allowedBlankLines": 1,
+				"evenBetterToml.formatter.arrayTrailingComma": false,
+				"evenBetterToml.formatter.reorderKeys": true,
+				"evenBetterToml.formatter.trailingNewline": true,
+				"evenBetterToml.formatter.compactArrays": false,
+				"evenBetterToml.formatter.reorderArrays": false,
+				"evenBetterToml.rules": [],
+				"explorer.excludeGitIgnore": true
+			}
+		}
+	}
+}
