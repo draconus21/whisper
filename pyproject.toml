@@ -1,0 +1,55 @@
+[build-system]
+  build-backend="setuptools.build_meta"
+  requires     =[ "setuptools" ]
+
+[project]
+  authors        =[ { name="Neeth Kunnath", email="neeth.xavier@gmail.com" } ]
+  classifiers    =[ "Natural Language :: English", "Programming Language :: Python :: 3.10" ]
+  dependencies   =[  ]
+  description    =""
+  keywords       =[ "whisper", "ai", "transcription" ]
+  license        ={ file="LICENSE" }
+  name           ="whisper"
+  readme         ="README.md"
+  requires-python=">=3.10"
+  version        ="0.0"
+
+[project.optional-dependencies]
+  dev =[  ]
+  docs=[  ]
+
+  #[project.scripts]
+
+[project.urls]
+  Homepage="https://github.com/draconus21/whisper"
+
+[tool.setuptools.packages.find]
+  exclude=[ "tests" ]
+  where  =[ "src" ]
+
+[tool.pytest.ini_options]
+  # Neeth: Not sure why --basetemp=\"${TESTDATA_TMP_DIR\" does not work. Same for --plots
+  # Hardcoding paths for now.
+  addopts  ="--capture=sys --junitxml=test_reports/calibration.xml  --plots=test_reports"
+  testpaths=[ "whisper" ]
+
+[tool.black]
+  force-exclude='''
+(
+  /(
+      \.eggs         # exclude a few common directories in the
+    | \.git          # root of the project
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv310
+    | _build
+    | buck-out
+    | build
+    | dist
+  )/
+)
+'''
+  ignore="E501"
+  line-length=120
+  target-version=[ "py310" ]
