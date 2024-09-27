@@ -3,19 +3,28 @@
   requires     =[ "setuptools" ]
 
 [project]
-  authors        =[ { name="Neeth Kunnath", email="neeth.xavier@gmail.com" } ]
-  classifiers    =[ "Natural Language :: English", "Programming Language :: Python :: 3.10" ]
-  dependencies   =[ "dataset[audio]", "transformers", "accelerate", "evaluate", "jiwer", "tensorboard", "gradio" ]
-  description    ="Experminting with WhisperAI for transcription"
-  keywords       =[ "whisper", "ai", "transcription" ]
-  license        ={ file="LICENSE" }
-  name           ="whisper"
-  readme         ="README.md"
+  authors=[ { name="Neeth Kunnath", email="neeth.xavier@gmail.com" } ]
+  classifiers=[ "Natural Language :: English", "Programming Language :: Python :: 3.10" ]
+  dependencies=[
+    "dataset[audio]",
+    "transformers",
+    "accelerate",
+    "evaluate",
+    "jiwer",
+    "tensorboard",
+    "gradio",
+    "soundfile"
+  ]
+  description="Experminting with WhisperAI for transcription"
+  keywords=[ "whisper", "ai", "transcription" ]
+  license={ file="LICENSE" }
+  name="whisper"
+  readme="README.md"
   requires-python=">=3.10"
-  version        ="0.0"
+  version="0.0"
 
 [project.optional-dependencies]
-  dev =[  ]
+  dev =[ "ipykernel", "ipywidgets" ]
   docs=[  ]
 
   #[project.scripts]

@@ -21,6 +21,7 @@
 		"ghcr.io/nils-geistmann/devcontainers-features/zsh:0": {
 			"setLocale": true,
 			"theme": "agnoster",
+			"plugins": "git docker colored-man-pages zsh-autosuggestions zsh-syntax-highlighting",
 			"desiredLocale": "en_US.UTF-8 UTF-8"
 		},
 		"ghcr.io/iterative/features/nvtop:1": {},
@@ -43,8 +44,11 @@
 		// for gpu
 		"--shm-size=64g"
 	],
+	"mounts": [
+		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.cache/huggingface,target=/home/vscode/.cache/huggingface,type=bind,consistency=cached"
+	],
 	"containerEnv": {
-		"VENV": "/home/vscode/.venv",
+		"VENV": "${containerWorkspaceFolder}/.venv",
 		// for X11 forwarding
 		"DISPLAY": "${localEnv:DISPLAY}",
 		"XAUTHORITY": "/tmp/.Xauthority",
@@ -64,7 +68,8 @@
 				"eamodio.gitlens",
 				"monokai.theme-monokai-pro-vscode",
 				"lextudio.restructuredtext",
-				"redhat.vscode-xml"
+				"redhat.vscode-xml",
+				"ms-toolsai.jupyter"
 			],
 			"settings": {
 				"editor.formatOnSave": true,
