@@ -5,6 +5,10 @@ Following steps from [Fine-Tune Whisper For Multilingual ASR with 🤗 Transform
 
 Playing around with fine-tuning whisper
 
+## Getting started
+```console
+pip install -e ".venv"
+```
 
 ## Build
 ```console
