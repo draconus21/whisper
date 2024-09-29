@@ -76,6 +76,7 @@
 				"python.terminal.activateEnvironment": true,
 				"python.analysis.autoFormatStrings": true,
 				"python.defaultInterpreterPath": "${containerEnv:VENV}/bin/python",
+				"notebook.formatOnSave.enabled": true,
 				"notebook.formatOnCellExecution": true,
 				"black-formatter.showNotifications": "onError",
 				"black-formatter.interpreter": [
