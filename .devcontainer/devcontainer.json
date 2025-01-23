@@ -48,6 +48,8 @@
 		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.cache/huggingface,target=/home/vscode/.cache/huggingface,type=bind,consistency=cached"
 	],
 	"containerEnv": {
+		"NVIDIA_VISIBLE_DEVICES": "0",
+		"CUDA_VISIBLE_DEVICES": "0",
 		"VENV": "${containerWorkspaceFolder}/.venv",
 		// for X11 forwarding
 		"DISPLAY": "${localEnv:DISPLAY}",
