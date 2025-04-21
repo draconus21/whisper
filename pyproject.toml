@@ -8,7 +8,7 @@
   dependencies   =[ "datasets[audio]", "transformers", "accelerate", "evaluate", "jiwer", "tensorboard", "gradio" ]
   description    ="Experminting with WhisperAI for transcription"
   keywords       =[ "whisper", "ai", "transcription" ]
-  license        ={ file="LICENSE" }
+  license-files  =[ "LICENSE" ]
   name           ="whisper"
   readme         ="README.md"
   requires-python=">=3.10"
@@ -18,7 +18,8 @@
   dev =[ "ipykernel", "ipywidgets" ]
   docs=[  ]
 
-  #[project.scripts]
+[project.scripts]
+  audio-splitter="whisper.data.audio_splitter:main"
 
 [project.urls]
   Homepage="https://github.com/draconus21/whisper"

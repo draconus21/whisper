@@ -24,6 +24,9 @@
 			"plugins": "git docker colored-man-pages zsh-autosuggestions zsh-syntax-highlighting",
 			"desiredLocale": "en_US.UTF-8 UTF-8"
 		},
+		"ghcr.io/rocker-org/devcontainer-features/apt-packages:1": {
+			"packages": "ffmpeg"
+		},
 		"ghcr.io/iterative/features/nvtop:1": {},
 		"ghcr.io/guiyomh/features/vim": {}
 	},
